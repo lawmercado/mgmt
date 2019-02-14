@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+    <ion-title>Categories</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-fab vertical='bottom' horizontal='center' slot='fixed'>
+    <ion-fab-button color='secondary' (click)='presentCategorieModal()'>
+      <ion-icon name='add'></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <div class='empty-list' *ngIf='categories?.length == 0'>
+    <p>No categories found</p>
+    <p>:(</p>
+  </div>
+
+  <ion-list>
+    <ion-item *ngFor='let category of categories'>
+      <ion-label [color]='category.color'>{{ category.name }}</ion-label>
+      <ion-button fill='clear' (click)='presentCategorieModal(category)'>
+        <ion-icon slot='icon-only' name='create'></ion-icon>
+      </ion-button>
+      <ion-button fill='clear' color='danger' (click)='deleteCategory(category.id)'>
+        <ion-icon slot='icon-only' name='trash'></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

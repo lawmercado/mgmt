@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot='end'>
+      <ion-button color='secondary' fill='clear' size='small' (click)='dismissModal()'>Close</ion-button>
+    </ion-buttons>
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="categoryForm" (submit)="onSubmit()">
+    <ion-input name='id' type='hidden' formControlName='id'></ion-input>
+
+    <ion-item>
+      <ion-label position="stacked" color="primary">Name</ion-label>
+      <ion-input placeholder='Name' name='name' type='text' formControlName='name' autocapitalize='words'></ion-input>
+    </ion-item>
+
+    <ion-list>
+      <ion-radio-group name='color' formControlName='color'>
+        <ion-list-header>Color</ion-list-header>
+    
+        <ion-item>
+          <ion-label color='primary'>Blue</ion-label>
+          <ion-radio color='primary' value='primary'></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color='secondary'>Orange</ion-label>
+          <ion-radio color='secondary' value='secondary'></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color='tertiary'>Lilac</ion-label>
+          <ion-radio color='tertiary' value='tertiary'></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color='success'>Green</ion-label>
+          <ion-radio color='success' value='success'></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color='warning'>Yellow</ion-label>
+          <ion-radio color='warning' value='warning'></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color='danger'>Red</ion-label>
+          <ion-radio color='danger' value='danger'></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+    <div padding-top>
+      <ion-button type='submit' [disabled]='!categoryForm.valid' color='primary' expand="full">Save</ion-button>
+    </div>
+  </form>
+</ion-content>

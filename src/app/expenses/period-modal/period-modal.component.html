@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot='end'>
+        <ion-button color='secondary' fill='clear' size='small' (click)='dismissModal()'>Close</ion-button>
+      </ion-buttons>
+      <ion-title>{{ title }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+      <form [formGroup]='periodForm' (submit)='onSubmit()'>
+        <ion-input type='hidden' name='id' formControlName='id'></ion-input>
+
+        <ion-item>
+          <ion-label position='stacked' color='primary'>Month</ion-label>
+          <ion-datetime placeholder='Month' display-format='MM/YYYY' formControlName='month'></ion-datetime>
+        </ion-item>
+    
+        <div formGroupName='categoriesExpenseIntent'>
+          <ion-list>
+            <ion-list-header>Intended expenses by category</ion-list-header>
+            <ion-item *ngFor='let categoryExpenseIntent of categoriesExpenseIntent'>
+              <ion-label>{{ categoryExpenseIntent.category.name }}</ion-label>
+              <ion-input type='num' [brmasker]='{ form: periodForm.get("categoriesExpenseIntent." + categoryExpenseIntent.category.name), money: true, thousand: "",  decimalCaracter: ".", decimal: "2" }' placeholder='Expense' [formControlName]='categoryExpenseIntent.category.name'></ion-input>
+              <ion-icon slot='end' name='logo-euro'></ion-icon>
+            </ion-item>
+          </ion-list>
+        </div>
+
+        <div padding-top>
+          <ion-button type='submit' [disabled]='!periodForm?.valid' color='primary' expand='full'>Save</ion-button>
+        </div>
+      </form>
+  </ion-content>

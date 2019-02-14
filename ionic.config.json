@@ -1,0 +1,7 @@
+{
+  "name": "MGMT",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

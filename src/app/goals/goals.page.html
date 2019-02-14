@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+    <ion-title>Goals</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button color='secondary'>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <div class='empty-list' *ngIf='goals?.length == 0'>
+    <p>No goals found</p>
+    <p>:(</p>
+  </div>
+</ion-content>

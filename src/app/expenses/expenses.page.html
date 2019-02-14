@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+    <ion-title>Expenses</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical='bottom' horizontal='center' slot='fixed'>
+    <ion-fab-button color='secondary'>
+      <ion-icon name='add'></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side='top'>
+      <ion-fab-button color='light' data-desc='Add period' (click)='presentPeriodModal()'>
+        <ion-icon color='secondary' name='add'></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color='light' data-desc='Add expense' (click)='presentExpenseModal()'>
+        <ion-icon color='secondary' name='add'></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <div class='empty-list' *ngIf='periods?.length == 0'>
+    <p>No periods found</p>
+    <p>:(</p>
+  </div>
+
+  <ion-card *ngFor='let period of periods'>
+    <ion-card-header>
+      <ion-card-title>{{ period.month | date : 'MMMM, yyyy' }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor='let categoryExpenseIntent of period.categoriesExpenseIntent'>
+          <ion-label [color]='categoryExpenseIntent.category.color'>{{ categoryExpenseIntent.category.name }}</ion-label>
+          <span>{{ categoryExpenseIntent.total | currency : 'EUR' }}</span>
+        </ion-item>
+      </ion-list>
+      <ion-item lines='none'>
+        <ion-button color='danger' size='small' fill='clear' slot='end' (click)='deletePeriod(period.id)'>Delete</ion-button>
+        <ion-button color='primary' size='small' fill='clear' slot='end'>List expenses</ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

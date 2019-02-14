@@ -1,0 +1,41 @@
+ion-fab-button[data-desc] {
+  position: relative;
+  
+  &::after {
+    position: absolute;
+    content: attr(data-desc);
+    z-index: -1;
+    right: 30px;
+    bottom: 3px;
+    padding: 9px;
+    padding-right: 15px;
+    background-color: var(--ion-color-dark);
+    border-radius: 15px 0 0 15px;
+    color: var(--ion-color-light);
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12);
+  }
+}
+
+ion-card {
+  ion-card-title {
+    text-align: center;
+    font-weight: bolder;
+  }
+}
+
+.empty-list {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    margin: 0;
+    padding: 2px;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 1.2rem;
+  }
+}

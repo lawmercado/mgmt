@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot='end'>
+      <ion-button color='secondary' fill='clear' size='small' (click)='dismissModal()'>Close</ion-button>
+    </ion-buttons>
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]='expenseForm' (submit)='onSubmit()'>
+      <ion-input type='hidden' name='id' formControlName='id'></ion-input>
+
+      <ion-item>
+        <ion-label position='stacked' color='primary'>Name</ion-label>
+        <ion-input type='text' placeholder='Name' formControlName='name' autocapitalize='words'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position='stacked' color='primary'>Period</ion-label>
+        <ion-select placeholder='Select' formControlName='idPeriod'>
+          <ion-select-option *ngFor='let period of periods' [value]='period.id'>{{ period.month | date : 'MMMM, yyyy' }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position='stacked' color='primary'>Category</ion-label>
+        <ion-select placeholder='Select' formControlName='idCategory'>
+          <ion-select-option *ngFor='let category of categories' [value]='category.id'>{{ category.name }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position='stacked' color='primary'>Value</ion-label>
+        <ion-input type='num' [brmasker]='{ form: expenseForm.get("value"), money: true, thousand: "",  decimalCaracter: ".", decimal: "2" }' placeholder='Expense' formControlName='value'></ion-input>
+        <ion-icon slot='end' size='small' name='logo-euro'></ion-icon>
+      </ion-item>
+
+      <div padding-top>
+        <ion-button type='submit' [disabled]='!expenseForm?.valid' color='primary' expand='full'>Save</ion-button>
+      </div>
+    </form>
+</ion-content>
