@@ -19,12 +19,15 @@ export class ExpenseModalComponent implements OnInit {
 
   public categories: CategoryData[];
 
+  public selectedPeriod: PeriodData;
+
   constructor(private db: DatabaseService, private formBuilder: FormBuilder, private modalCtrl: ModalController) {
     this.expenseForm = this.formBuilder.group({
       id: [''],
       name: ['', Validators.required],
       idPeriod: ['', Validators.required],
       idCategory: ['', Validators.required],
+      datetime: ['', Validators.required],
       value: ['', Validators.required]
     });
 
@@ -49,11 +52,20 @@ export class ExpenseModalComponent implements OnInit {
       id: this.expense ? this.expense.id : null,
       name: this.expenseForm.get('name').value,
       value: this.expenseForm.get('value').value,
+      datetime: this.expenseForm.get('datetime').value,
       idPeriod: this.expenseForm.get('idPeriod').value,
-      idCategory: this.expenseForm.get('idCategory').value
+      idCategory: this.expenseForm.get('idCategory').value,
+      category: null
     }
 
     return this.modalCtrl.dismiss(data);
+  }
+
+  onSelectPeriod() {
+    let id = this.expenseForm.get('idPeriod').value;
+    const result = this.periods.filter(period => period.id == id);
+
+    this.selectedPeriod = result[0];
   }
 
   dismissModal() {

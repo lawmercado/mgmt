@@ -9,6 +9,7 @@ import { ExpensesPage } from './expenses.page';
 import { PeriodModalComponent } from './period-modal/period-modal.component';
 import { ExpenseModalComponent } from './expense-modal/expense-modal.component';
 import { BrMaskerModule } from 'br-mask';
+import { PeriodExpensesModalComponent } from './period-expenses-modal/period-expenses-modal.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     BrMaskerModule
   ],
-  entryComponents: [PeriodModalComponent, ExpenseModalComponent],
-  declarations: [ExpensesPage, PeriodModalComponent, ExpenseModalComponent]
+  entryComponents: [PeriodModalComponent, ExpenseModalComponent, PeriodExpensesModalComponent],
+  declarations: [ExpensesPage, PeriodModalComponent, ExpenseModalComponent, PeriodExpensesModalComponent]
 })
 export class ExpensesPageModule {}

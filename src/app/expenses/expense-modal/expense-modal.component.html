@@ -18,11 +18,16 @@
 
       <ion-item>
         <ion-label position='stacked' color='primary'>Period</ion-label>
-        <ion-select placeholder='Select' formControlName='idPeriod'>
-          <ion-select-option *ngFor='let period of periods' [value]='period.id'>{{ period.month | date : 'MMMM, yyyy' }}</ion-select-option>
+        <ion-select placeholder='Select' formControlName='idPeriod' (ionChange)='onSelectPeriod()'>
+          <ion-select-option *ngFor='let period of periods' [value]='period.id'>{{ period.month | date : 'MM/yyyy' }}</ion-select-option>
         </ion-select>
       </ion-item>
-  
+      
+      <ion-item *ngIf='this.expenseForm?.get("idPeriod").valid'>
+        <ion-label position='stacked' color='primary'>Day</ion-label>
+        <ion-datetime placeholder='Day' display-format='DD/MM/YYYY' min='{{ selectedPeriod?.month }}' max='{{ selectedPeriod?.month }}' formControlName='datetime'></ion-datetime>
+      </ion-item>
+
       <ion-item>
         <ion-label position='stacked' color='primary'>Category</ion-label>
         <ion-select placeholder='Select' formControlName='idCategory'>

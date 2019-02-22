@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot='end'>
+      <ion-button color='secondary' fill='clear' size='small' (click)='dismissModal()'>Close</ion-button>
+    </ion-buttons>
+    <ion-title>Expenses from {{ title | date : 'MMM, yyyy' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class='empty-list' *ngIf='expenses?.length == 0'>
+      <p>No expenses found</p>
+      <p>:(</p>
+    </div>
+
+  <ion-list>
+    <ion-item *ngFor='let expense of expenses'>
+      <ion-label>
+        <ion-text>
+          <h2>{{ expense.name }}</h2>
+        </ion-text>
+        <ion-note color='{{ expense.category.color }}' slot='end'>#{{ expense.category.name | lowercase }}</ion-note>
+      </ion-label>
+      <ion-label class='right' slot='end'>
+        <ion-text>
+          <h3>{{ expense.value | currency : 'EUR' }}</h3>
+        </ion-text>
+        <ion-note slot='end'>{{ expense.datetime | date : 'd MMM'}}</ion-note>
+      </ion-label>
+      <ion-button slot='end' fill='clear' color='danger' (click)='deleteExpense(expense.id)'>
+        <ion-icon slot='icon-only' name='trash'></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

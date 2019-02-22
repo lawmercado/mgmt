@@ -33,7 +33,7 @@ export class PeriodModalComponent implements OnInit {
         for(let i = 0; i < categories.length; i++) {
           let category = categories[i];
 
-          this.categoriesExpenseIntent.push({ id: null, 'category': category, total: 0 });
+          this.categoriesExpenseIntent.push({ id: null, 'category': category, total: 0, current: 0});
 
           group.addControl(category.name, new FormControl('', Validators.pattern(/^$|([0-9]+\.[0-9]{2})/)));
         }

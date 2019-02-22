@@ -3,6 +3,7 @@ import { ModalController, PopoverController, ToastController } from '@ionic/angu
 import { PeriodModalComponent } from './period-modal/period-modal.component';
 import { PeriodData, DatabaseService, CategoryExpenseIntentData, ExpenseData } from 'src/services/database.service';
 import { ExpenseModalComponent } from './expense-modal/expense-modal.component';
+import { PeriodExpensesModalComponent } from './period-expenses-modal/period-expenses-modal.component';
 
 @Component({
   selector: 'app-expenses',
@@ -108,6 +109,22 @@ export class ExpensesPage implements OnInit {
           this.displayError('Unable to save the expense');
         });
     }
+  }
+
+  async presentPeriodExpensesModal(period: PeriodData) {
+    const modal = await this.modalCtrl.create({
+      component: PeriodExpensesModalComponent,
+      componentProps: {
+        'title': period.month,
+        'expenses': period.expenses
+      }
+    });
+
+    await modal.present();
+
+    await modal.onDidDismiss();
+
+    this.updatePeriodList();
   }
 
   async displaySuccess(message: string) {
